@@ -1,3 +1,5 @@
+package EnumTest;
+
 /**
  * Created by Aidon on 17/8/3.
  */
