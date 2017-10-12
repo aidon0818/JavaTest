@@ -1,4 +1,4 @@
-package ThreadTest.threadJoin;
+package ThreadTest.thread;
 
 /**
  * Created by Dong_Liu
