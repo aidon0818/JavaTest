@@ -13,6 +13,13 @@ public class ObjectWait {
     /**
      * A 1, B 1, B 2, B 3, A 2, A 3
      */
+    /**
+     * 首先创建一个 A 和 B 共享的对象锁 lock = new Object();
+     * 当 A 得到锁后，先打印 1，然后调用 lock.wait() 方法，交出锁的控制权，进入 wait 状态；
+     * 对 B 而言，由于 A 最开始得到了锁，导致 B 无法执行；直到 A 调用 lock.wait() 释放控制权后， B 才得到了锁；
+     * B 在得到锁后打印 1， 2， 3；然后调用 lock.notify() 方法，唤醒正在 wait 的 A;
+     * A 被唤醒后，继续打印剩下的 2，3。
+     */
     private static void demo3() {
         Object lock = new Object();
         Thread A = new Thread(new Runnable() {
@@ -46,7 +53,7 @@ public class ObjectWait {
     }
 
     public static void main(String[] args) {
-        ObjectWait objectWait=new ObjectWait();
+        ObjectWait objectWait = new ObjectWait();
         objectWait.demo3();
     }
 }
