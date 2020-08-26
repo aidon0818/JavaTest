@@ -36,5 +36,6 @@ public class AsymmetricCryptoTest {
         byte[] decrypt2 = rsa.decrypt(encrypt2, KeyType.PublicKey);
         String ss = StrUtil.str(decrypt2, CharsetUtil.CHARSET_UTF_8);
         System.out.println(ss);
+
     }
 }
