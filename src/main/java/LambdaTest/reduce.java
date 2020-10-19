@@ -47,6 +47,10 @@ public class reduce {
         //求逻辑求乘机
         int result2 = stream.filter(i -> i % 2 == 0).reduce(1, (i, j) -> i * j);
 
+        stream = Arrays.stream(new Integer[]{1, 2, 3, 4, 5, 6, 7});
+        int result3 = stream.filter(i -> i % 2 == 1).reduce(1, (i, j) -> i * j);
+
         Optional.of(result2).ifPresent(System.out::println);
+        Optional.of(result3).ifPresent(System.out::println);
     }
 }
