@@ -30,7 +30,7 @@ public class ExcelWriterTest {
 //        List<String> row3 = CollUtil.newArrayList("aa2", "bb2", "cc2", "dd2");
 //        List<String> row4 = CollUtil.newArrayList("aa3", "bb3", "cc3", "dd3");
 //        List<String> row5 = CollUtil.newArrayList("aa4", "bb4", "cc4", "dd4");
-//
+
 //        List<List<String>> rows = CollUtil.newArrayList(row1, row2, row3, row4, row5);
 //        //通过工具类创建writer
 //        ExcelWriter writer = ExcelUtil.getWriter("g:/writeTest.xlsx");
@@ -47,32 +47,37 @@ public class ExcelWriterTest {
 //        //关闭writer，释放内存
 //        writer.close();
 
+//
+//        Map<String, Object> row1 = new LinkedHashMap<>();
+//        row1.put("姓名", "张三");
+//        row1.put("年龄", 23);
+//        row1.put("成绩", 88.32);
+//        row1.put("是否合格", true);
+//        row1.put("考试日期", DateUtil.date());
+//
+        long startTime = System.currentTimeMillis();
+        List<List<?>> ls = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+            List<String> row1 = CollUtil.newArrayList(i + "", "bb", "cc", "dd");
+            ls.add(row1);
+        }
+        List<List<?>> rows = CollUtil.newArrayList(ls);
 
-        Map<String, Object> row1 = new LinkedHashMap<>();
-        row1.put("姓名", "张三");
-        row1.put("年龄", 23);
-        row1.put("成绩", 88.32);
-        row1.put("是否合格", true);
-        row1.put("考试日期", DateUtil.date());
-
-        Map<String, Object> row2 = new LinkedHashMap<>();
-        row2.put("姓名", "李四");
-        row2.put("年龄", 33);
-        row2.put("成绩", 59.50);
-        row2.put("是否合格", false);
-        row2.put("考试日期", DateUtil.date());
-
-        ArrayList<Map<String, Object>> rows = CollUtil.newArrayList(row1, row2);
-
-        // 通过工具类创建writer
-        //大数据量写入
-        BigExcelWriter writer = ExcelUtil.getBigWriter("g:/writeMapTest.xlsx");
+//        // 通过工具类创建writer
+//        //大数据量写入
+        BigExcelWriter writer = ExcelUtil.getBigWriter("g:/writeMapTest30.xlsx", "表一");
         // 合并单元格后的标题行，使用默认标题样式
         writer.merge(rows.size() - 1, "一班成绩单");
-        // 一次性写出内容，使用默认样式，强制输出标题
         writer.write(rows, true);
+        writer.setSheet("表2");
+        writer.write(rows, true);
+        // 一次性写出内容，使用默认样式，强制输出标题
+
         // 关闭writer，释放内存
         writer.close();
+        long endTime = System.currentTimeMillis();
+        System.out.println("程序运行时间：" + (endTime - startTime) + "ms");    //输出程序运行时间
+
     }
 
 }
